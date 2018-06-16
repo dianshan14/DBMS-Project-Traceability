@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>SQL mode</h1>
+	<form method="post">
+		<textarea name="sql" id="sql" rows="10" cols="70"></textarea>
+		<input type="submit" value="Query it!">
+	</form>
+	{% for query_slice in sql %}
+		<div>{{ query_slice }}</div>
+	{% endfor %}
+</div>
+{% endblock %}

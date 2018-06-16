@@ -1,0 +1,12 @@
+.btnstyle {
+	color: #9d9d9d;
+	border-left: 10px solid #333;
+}
+
+.btnstyle:hover {
+	color: white;
+}
+
+.bgnstyle {
+	background-color: #333;
+}
