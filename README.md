@@ -42,10 +42,12 @@ A simple web site that simulate the management system of product traceability.
 
 ## Directory tree
 ```
-.
+DBMS-Project-Traceability
  ├── dbms
+ │   ├── __init__.py
  │   ├── button.py
  │   ├── db.py
+ │   ├── schema.sql
  │   ├── default_data
  │   │   ├── Commodity.csv
  │   │   ├── dbms.sqlite
@@ -57,13 +59,6 @@ A simple web site that simulate the management system of product traceability.
  │   │   ├── Retailer.csv
  │   │   ├── schema.sql
  │   │   └── Sell.csv
- │   ├── favicon.ico
- │   ├── __init__.py
- │   ├── __pycache__
- │   │   ├── button.cpython-35.pyc
- │   │   ├── db.cpython-35.pyc
- │   │   └── __init__.cpython-35.pyc
- │   ├── schema.sql
  │   ├── static
  │   │   ├── image
  │   │   │   ├── background.png
@@ -82,8 +77,7 @@ A simple web site that simulate the management system of product traceability.
  │       └── update.html
  ├── Design
  │   ├── Design.png
- │   ├── ERD.xml
- │   └── tree.txt
+ │   └── ERD.xml
  ├── instance
  │   └── dbms.sqlite
  ├── README.md
