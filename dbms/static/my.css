@@ -1,6 +1,7 @@
 .btnstyle {
 	color: #9d9d9d;
 	border-left: 10px solid #333;
+	font-size: 16px;
 }
 
 .btnstyle:hover {
@@ -9,4 +10,14 @@
 
 .bgnstyle {
 	background-color: #333;
+}
+
+.sqlstyle {
+	border-style : dashed;
+	padding: 5px;
+}
+
+#flash {
+	color : red;
+	font-size : 40px;
 }

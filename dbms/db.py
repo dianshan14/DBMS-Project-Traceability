@@ -1,4 +1,5 @@
 import sqlite3
+import csv
 
 import click
 from flask import current_app, g
@@ -19,18 +20,47 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
-def init_db():
+def init_db_schema():
     db = get_db()
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf-8'))
 
-@click.command('init-db')
+@click.command('init-schema')
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables."""
-    init_db()
+    init_db_schema()
     click.echo("Initialized the database.")
+
+def insert_default():
+    db = get_db()
+    name = ["Sell", "Distribute", "Retailer", "Manufacturer", "Jobber", "Market", "Commodity"]
+
+    for i, table in enumerate(name):
+        with current_app.open_resource("./default_data/" + table + ".csv", 'r') as f:
+            if i <= 1:
+                times = i+1
+            else:
+                times = 3
+            update = "INSERT INTO " + table + " VALUES (" + "?, "*times + "?)"
+            next(f, None)
+            reader = csv.reader(f)
+            for row in reader:
+                db.execute(update, row)
+            db.commit()
+
+    #with
+
+@click.command('init-data')
+@with_appcontext
+def init_db_data_command():
+    """Insert default value into tables"""
+    init_db_schema()
+    insert_default()
+    get_db().close()
+    click.echo("Data is prepared!")
 
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(init_db_data_command)

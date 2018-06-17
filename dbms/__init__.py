@@ -2,8 +2,9 @@ import os
 import pprint
 
 from flask import Flask
-from flask import render_template
+from flask import render_template, session
 from flask_bootstrap import Bootstrap
+
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -22,19 +23,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    content = list()
-    for x in range(101):
-        ran = dict()
-        ran['id'] = x
-        ran['name'] = x * 100
-        ran['score'] = x * 15
-        ran['grade'] = x
-        ran['number'] = x * 3
-        content.append(ran)
+    from dbms.db import init_db_schema, insert_default, get_db
 
-    @app.route('/')
-    def index():
-        return render_template('enter.html', content=content)
+    from . import db
+    db.init_app(app)
 
     from . import button
     app.register_blueprint(button.bp)
@@ -45,5 +37,12 @@ def create_app(test_config=None):
     print("")
     pprint.pprint(app.url_map)
     print("")
+
+    @app.route('/')
+    def index():
+        if session.get('insert') is None:
+            session['insert'] = 0
+        content = get_db().execute("SELECT * FROM Commodity").fetchall()
+        return render_template('enter.html', table='Commodity', content=content)
 
     return app

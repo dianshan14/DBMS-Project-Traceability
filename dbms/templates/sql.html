@@ -4,13 +4,45 @@
 
 {% block page_content %}
 <div class="page-header">
-    <h1>SQL mode</h1>
+	<h1><font color="blue">SQL mode</font></h1>
 	<form method="post">
 		<textarea name="sql" id="sql" rows="10" cols="70"></textarea>
 		<input type="submit" value="Query it!">
 	</form>
-	{% for query_slice in sql %}
-		<div>{{ query_slice }}</div>
-	{% endfor %}
+	<br>
+
+	{% if sql %}
+		<div class="sqlstyle">
+		{% for query_slice in sql %}
+			<div>{{ query_slice }}</div>
+		{% endfor %}
+		</div>
+	{% endif %}
+	<hr>
+	<table class="table-hover table-bordered table" style="width: 80%;">
+		<tr>
+			{% if content %}
+				{% for key in content[0].keys() %}
+					<th>{{ key }}</th>
+				{% endfor %}
+			{% endif %}
+		</tr>
+		{% if content %}
+			{% for row in content %}
+				<tr>
+				{% for key in content[0].keys() %}
+				<th>{{ row[key] }}</th>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		{% endif %}
+	</table>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<div id="flash">{{ message }}</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
 </div>
 {% endblock %}

@@ -27,25 +27,27 @@
 				<li class="dropdown">
 					<a class="dropdown-toggle nav-link" data-toggle="dropdown" id="navbarDropdownMenuLink" href="/" aria-haspopup="true" aria-expanded="false">SELECT</a>
 					<div class="dropdown-menu bgnstyle" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item btnstyle" href="/">IN</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='select') }}">SELECT</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">NOT IN</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='in') }}"/>IN</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">EXISTS</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='not_in') }}">NOT IN</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">NOT_EXISTS</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='exists') }}">EXISTS</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">COUNT</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='not_exists') }}">NOT_EXISTS</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">SUM</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='count') }}">COUNT</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">MAX</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='sum') }}">SUM</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">MIN</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='max') }}">MAX</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">AVG</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='min') }}">MIN</a>
 						<br>
-						<a class="dropdown-item btnstyle" href="/">HAVING</a>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='avg') }}">AVG</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.select_btn', advance='having') }}">HAVING</a>
 					</div>
 				</li>
 			</ul>
@@ -61,7 +63,30 @@
 			<ul class="nav navbar-nav">
 				<li><a href="{{ url_for('button.sql_btn') }}">SQL MODE</a></li>
 			</ul>
-        </div>
+			<ul class="nav navbar-nav">
+				<li><a href="{{ url_for('button.reset_btn') }}">RESET</a></li>
+			</ul>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle nav-link" data-toggle="dropdown" id="navbarDropdownMenuLink" href="/" aria-haspopup="true" aria-expanded="false">LOOK_TABLES</a>
+					<div class="dropdown-menu bgnstyle" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Manufacturer') }}">Manufacturer</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Jobber') }}"/>Jobber</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Market') }}">Market</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Retailer') }}">Retailer</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Commodity') }}">Commodity</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Sell') }}">Sell</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Distribute') }}">Distribute</a>
+					</div>
+				</li>
+			</ul>
+		</div>
     </div>
 </div>
 {% endblock %}

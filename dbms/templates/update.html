@@ -4,6 +4,31 @@
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Update</h1>
+	<h1><font color="blue">Update</font></h1>
+
+	<div class="sqlstyle">
+	{% for query_slice in sql %}
+		<div>{{ query_slice }}</div>
+	{% endfor %}
+	</div>
+	<hr>
+	<table class="table-hover table-bordered table" style="width: 80%;">
+		<tr>
+			{% if content %}
+				{% for key in content[0].keys() %}
+					<th>{{ key }}</th>
+				{% endfor %}
+			{% endif %}
+		</tr>
+		{% if content %}
+			{% for row in content %}
+				<tr>
+				{% for key in content[0].keys() %}
+				<th>{{ row[key] }}</th>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		{% endif %}
+	</table>
 </div>
 {% endblock %}
