@@ -48,13 +48,13 @@ $ source dbms_venv/bin/activate
 3. install required Python package with pip
 
 ```bash
+$ cd DBMS-Project-Traceability
 $ pip install -r requirements.txt
 ```
 
 4. set flask environment
 
 ```bash
-$ cd DBMS-Project-Traceability
 $ export FLASK_APP=dbms
 $ export FLASK_ENV=development
 ```
