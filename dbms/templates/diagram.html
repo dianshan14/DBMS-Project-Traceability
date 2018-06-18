@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Management System{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+	<h1><font color="blue">{{ diagram }}</font></h1>
+
+	<div>
+		<img src="{{ url_for('static', filename='image/'+ diagram + '.png') }}" alt="image lost" width="800" height="600">
+	</div>
+</div>
+{% endblock %}

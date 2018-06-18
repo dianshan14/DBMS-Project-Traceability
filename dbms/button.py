@@ -1,3 +1,7 @@
+"""
+Button's routing and its function
+"""
+
 from flask import Blueprint, render_template, request, session, flash
 import pprint
 from dbms.db import get_db, init_db_schema, insert_default
@@ -6,6 +10,7 @@ bp = Blueprint('button', __name__)
 
 @bp.route('/select/<advance>')
 def select_btn(advance):
+    """SELECT button and many embedded SQL"""
     query_collection = dict()
     query_collection['select'] = ["SELECT *", "FROM Commodity", "WHERE (Commodity_ID%2 == 0)"]
     query_collection['in'] = ["SELECT Commodity_name, Retailer_name, Commodity_price", "FROM Commodity, Sell, Retailer", "WHERE Commodity.Commodity_ID=Sell.Commodity_ID AND Sell.Retailer_ID=Retailer.Retailer_ID AND", "Commodity.Commodity_ID IN ( SELECT Sell.Commodity_ID FROM Sell )"]
@@ -28,6 +33,7 @@ def select_btn(advance):
 
 @bp.route('/delete')
 def delete_btn():
+    """DELETE button and one embedded SQL"""
     db = get_db()
     sql = ["DELETE FROM Commodity", "WHERE Commodity_ID>65310"]
     db.execute(
@@ -40,6 +46,7 @@ def delete_btn():
 
 @bp.route('/insert')
 def insert_btn():
+    """INSERT button and one embedded SQL"""
     db = get_db()
     sql = ["INSERT INTO Commodity", "VALUES (65316, '我是被新增的', 99999, 15)"]
     if not has_inserted():
@@ -53,6 +60,7 @@ def insert_btn():
 
 @bp.route('/update')
 def update_btn():
+    """UPDATE button and one embedded SQL"""
     db = get_db()
     sql = ["UPDATE Commodity", "SET Commodity_weight=Commodity_weight*1.3"]
     res = db.execute(
@@ -65,6 +73,7 @@ def update_btn():
 
 @bp.route('/sql_mode', methods=('GET', 'POST'))
 def sql_btn():
+    """SQL query button and any enterd SQL"""
     content = None
     sql = None
     if request.method == 'POST':
@@ -95,6 +104,7 @@ def sql_btn():
 
 @bp.route('/reset')
 def reset_btn():
+    """RESET button and action of reset"""
     init_db_schema()
     insert_default()
     content = get_db().execute("SELECT * FROM Commodity").fetchall()
@@ -104,8 +114,14 @@ def reset_btn():
 
 @bp.route('/tables/<table>')
 def table_btn(table):
+    """LOOK_TABLES button and display content of tables"""
     content = get_db().execute("SELECT * FROM " + table).fetchall()
     return render_template('enter.html', table=table, content=content)
+
+@bp.route('/diagrams/<diagram>')
+def diagram_btn(diagram):
+    """ERD and Schema button and display image"""
+    return render_template('diagram.html', diagram=diagram)
 
 def has_inserted():
     if session.get('insert') == 1:

@@ -49,8 +49,6 @@ def insert_default():
                 db.execute(update, row)
             db.commit()
 
-    #with
-
 @click.command('init-data')
 @with_appcontext
 def init_db_data_command():

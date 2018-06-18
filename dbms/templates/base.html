@@ -6,7 +6,7 @@
 
 {% endblock %}
 
-{% block title %}Flasky{% endblock %}
+{% block title %}Management System{% endblock %}
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
@@ -83,6 +83,16 @@
 						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Sell') }}">Sell</a>
 						<br>
 						<a class="dropdown-item btnstyle" href="{{ url_for('button.table_btn', table='Distribute') }}">Distribute</a>
+					</div>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle nav-link" data-toggle="dropdown" id="navbarDropdownMenuLink" href="/" aria-haspopup="true" aria-expanded="false">ERD and Schema</a>
+					<div class="dropdown-menu bgnstyle" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.diagram_btn', diagram='ERD') }}">ERD</a>
+						<br>
+						<a class="dropdown-item btnstyle" href="{{ url_for('button.diagram_btn', diagram='Schema') }}"/>Schema</a>
 					</div>
 				</li>
 			</ul>
