@@ -79,9 +79,13 @@ open your browser and enter URL `127.0.0.1:5000` in your browser's URL bar
 
 ## Screenshot and Usage
 <img src="./dbms/static/image/ScreenShot1.png" width="1500" height="120" />
+
 #### Button
-***Every embedded SQL is demostrated to highlight block.***
+
+<span style="background-color: lightblue; margin: 100px; padding: 10px;">Every embedded SQL is demostrated to highlight block.</span>
+
 <br>
+
 * **`Management System`** : default to display current content of  `Commodity` table
 * **`SELECT`** : dropdown list that include `SELECT`, `IN`, `NOT IN`, `EXISTS`, `NOT_EXISTS`, `COUNT`, `SUM`, `MAX`, `MIN`, `AVG`, `HAVING`
 * **`DELETE`** 、 **`INSERT`** 、 **`UPDATE`** have embedded SQL as well.
